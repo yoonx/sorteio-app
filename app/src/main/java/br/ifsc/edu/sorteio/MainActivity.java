@@ -13,6 +13,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     EditText editTextinicial, editTextfinal;
     TextView resultado;
+Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +23,27 @@ public class MainActivity extends AppCompatActivity {
         editTextinicial = findViewById(R.id.editTextinicial);
         editTextfinal = findViewById(R.id.editTextfinal);
         resultado = findViewById(R.id.resultado);
+        b = findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View view) {
+                                     sortear();
+
+                                 }
+                             }
+        );
+
+
     }
 
-    public void sortear(View view) {
-        Button bot = (Button) view;
-        bot.setText("Sortear Novamente");
+    public void sortear() {
 
-        int inicial = Integer.parseInt(editTextinicial.getText().toString());
-        int fim = Integer.parseInt(editTextfinal.getText().toString());
+        int inicial = Integer.parseInt(editTextfinal.getText().toString());
+        int fim = Integer.parseInt(editTextinicial.getText().toString());
 
 
         Random rand = new Random();
-        int numSort = rand.nextInt((fim - inicial) + 1)+ inicial;
+        int numSort = rand.nextInt(fim - inicial)+ inicial;
 
         resultado.setText(Integer.toString(numSort));
 
